@@ -33,7 +33,8 @@ if( Tablesaw.mustard ) {
 ;(function( $ ) {
 	var pluginName = "table",
 		classes = {
-			toolbar: "tablesaw-bar"
+			toolbar: "tablesaw-bar",
+			tableSlider: 'table-slider'
 		},
 		events = {
 			create: "tablesawcreate",
@@ -108,11 +109,18 @@ if( Tablesaw.mustard ) {
 	Table.prototype.createToolbar = function() {
 		// Insert the toolbar
 		// TODO move this into a separate component
+		var $appendPositon;
 		var $toolbar = this.$table.prev().filter( '.' + classes.toolbar );
 		if( !$toolbar.length ) {
+			if (this.$table.prev().is( '.' + classes.tableSlider )) {
+				$appendPositon = this.$table.prev();
+			}
+			else {
+				$appendPositon = this.$table;
+			}
 			$toolbar = $( '<div>' )
 				.addClass( classes.toolbar )
-				.insertBefore( this.$table );
+				.insertBefore( $appendPositon );
 		}
 		this.$toolbar = $toolbar;
 
@@ -351,12 +359,12 @@ if( Tablesaw.mustard ) {
 			priorityPrefix: 'tablesaw-priority-',
 			// TODO duplicate class, also in tables.js
 			toolbar: 'tablesaw-bar',
-			thead: 'tablesaw-header'
+			tableSlider: 'table-slider'
 		};
 
 		// Expose headers and allHeaders properties on the widget
 		// headers references the THs within the first TR in the table
-		this.headers = this.$table.find( 'tr.' + this.classes.thead + ' > th' );
+		this.headers = this.$table.find( 'tr:first > th' );
 
 		this.$table.data( 'tablesaw-coltoggle', this );
 	};
@@ -417,7 +425,7 @@ if( Tablesaw.mustard ) {
 		});
 
 		$menuButton.appendTo( $btnContain );
-		$btnContain.appendTo( this.$table.prev().filter( '.' + this.classes.toolbar ) );
+		$btnContain.appendTo( this.$table.prevAll().filter( '.' + this.classes.toolbar ) );
 
 		var closeTimeout;
 		function openPopup() {

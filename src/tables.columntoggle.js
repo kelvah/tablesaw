@@ -18,7 +18,8 @@
 			popup: 'tablesaw-columntoggle-popup',
 			priorityPrefix: 'tablesaw-priority-',
 			// TODO duplicate class, also in tables.js
-			toolbar: 'tablesaw-bar'
+			toolbar: 'tablesaw-bar',
+			tableSlider: 'table-slider'
 		};
 
 		// Expose headers and allHeaders properties on the widget
@@ -84,7 +85,7 @@
 		});
 
 		$menuButton.appendTo( $btnContain );
-		$btnContain.appendTo( this.$table.prev().filter( '.' + this.classes.toolbar ) );
+		$btnContain.appendTo( this.$table.prevAll().filter( '.' + this.classes.toolbar ) );
 
 		var closeTimeout;
 		function openPopup() {

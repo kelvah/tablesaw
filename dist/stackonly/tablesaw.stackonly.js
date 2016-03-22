@@ -33,7 +33,8 @@ if( Tablesaw.mustard ) {
 ;(function( $ ) {
 	var pluginName = "table",
 		classes = {
-			toolbar: "tablesaw-bar"
+			toolbar: "tablesaw-bar",
+			tableSlider: 'table-slider'
 		},
 		events = {
 			create: "tablesawcreate",
@@ -108,11 +109,18 @@ if( Tablesaw.mustard ) {
 	Table.prototype.createToolbar = function() {
 		// Insert the toolbar
 		// TODO move this into a separate component
+		var $appendPositon;
 		var $toolbar = this.$table.prev().filter( '.' + classes.toolbar );
 		if( !$toolbar.length ) {
+			if (this.$table.prev().is( '.' + classes.tableSlider )) {
+				$appendPositon = this.$table.prev();
+			}
+			else {
+				$appendPositon = this.$table;
+			}
 			$toolbar = $( '<div>' )
 				.addClass( classes.toolbar )
-				.insertBefore( this.$table );
+				.insertBefore( $appendPositon );
 		}
 		this.$toolbar = $toolbar;
 
