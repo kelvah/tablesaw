@@ -18,13 +18,12 @@
 			popup: 'tablesaw-columntoggle-popup',
 			priorityPrefix: 'tablesaw-priority-',
 			// TODO duplicate class, also in tables.js
-			toolbar: 'tablesaw-bar',
-			thead: 'tablesaw-header'
+			toolbar: 'tablesaw-bar'
 		};
 
 		// Expose headers and allHeaders properties on the widget
 		// headers references the THs within the first TR in the table
-		this.headers = this.$table.find( 'tr.' + this.classes.thead + ' > th' );
+		this.headers = this.$table.find( 'tr:first > th' );
 
 		this.$table.data( 'tablesaw-coltoggle', this );
 	};
