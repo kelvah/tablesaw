@@ -1,6 +1,6 @@
-/*! Tablesaw - v2.0.2 - 2015-10-28
+/*! Tablesaw - v2.0.2 - 2016-03-22
 * https://github.com/filamentgroup/tablesaw
-* Copyright (c) 2015 Filament Group; Licensed  */
+* Copyright (c) 2016 Filament Group; Licensed  */
 /*
 * tablesaw: A set of plugins for responsive tables
 * Stack and Column Toggle tables
@@ -350,12 +350,13 @@ if( Tablesaw.mustard ) {
 			popup: 'tablesaw-columntoggle-popup',
 			priorityPrefix: 'tablesaw-priority-',
 			// TODO duplicate class, also in tables.js
-			toolbar: 'tablesaw-bar'
+			toolbar: 'tablesaw-bar',
+			thead: 'tablesaw-header'
 		};
 
 		// Expose headers and allHeaders properties on the widget
 		// headers references the THs within the first TR in the table
-		this.headers = this.$table.find( 'tr:first > th' );
+		this.headers = this.$table.find( 'tr.' + this.classes.thead + ' > th' );
 
 		this.$table.data( 'tablesaw-coltoggle', this );
 	};
