@@ -33,7 +33,8 @@ if( Tablesaw.mustard ) {
 	var pluginName = "table",
 		classes = {
 			toolbar: "tablesaw-bar",
-			tableSlider: 'table-slider'
+			tableSlider: 'table-slider',
+			tableTabs: 'table-tabs'
 		},
 		events = {
 			create: "tablesawcreate",
@@ -111,7 +112,7 @@ if( Tablesaw.mustard ) {
 		var $appendPositon;
 		var $toolbar = this.$table.prev().filter( '.' + classes.toolbar );
 		if( !$toolbar.length ) {
-			if (this.$table.prev().is( '.' + classes.tableSlider )) {
+			if (this.$table.prev().hasClass(classes.tableSlider) || this.$table.prev().hasClass(classes.tableTabs)) {
 				$appendPositon = this.$table.prev();
 			}
 			else {
